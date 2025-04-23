@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM: getElementsByTagName & getElementsByClassName</title>
+    <style>
+      .resaltado {
+        color: white;
+        background-color: #007bff;
+        padding: 5px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ejemplo: Accediendo elementos del DOM</h1>
+
+    <section>
+      <p class="parrafo">Primer párrafo.</p>
+      <p class="parrafo">Segundo párrafo.</p>
+      <p class="parrafo">Tercer párrafo.</p>
+    </section>
+
+    <div class="contenedor">
+      <span>Elemento 1</span>
+      <span>Elemento 2</span>
+      <span>Elemento 3</span>
+    </div>
+
+    <button id="resaltarBtn">Resaltar párrafos</button>
+    <button id="resaltarSpanBtn">Resaltar spans</button>
+
+    <script>
+      /*
+    📌 getElementsByTagName()
+
+    - Devuelve una **HTMLCollection** de todos los elementos que coincidan con la etiqueta especificada.
+    - Es **dinámica**: si se agregan más elementos con esa etiqueta, la colección se actualiza automáticamente.
+    - Se puede acceder por índice como un array.
+    */
+
+      const spans = document.getElementsByTagName("span");
+      console.log("Todos los <span> encontrados:", spans); // HTMLCollection(3)
+
+      /*
+    📌 getElementsByClassName()
+
+    - Devuelve una **HTMLCollection** de todos los elementos que tengan la clase indicada.
+    - También es dinámica.
+    - Permite recorrer elementos y aplicarles cambios fácilmente.
+    */
+
+      const parrafos = document.getElementsByClassName("parrafo");
+      console.log("Todos los párrafos con clase 'parrafo':", parrafos); // HTMLCollection(3)
+
+      // 🚀 Interacción
+      document.getElementById("resaltarBtn").addEventListener("click", () => {
+        for (let i = 0; i < parrafos.length; i++) {
+          parrafos[i].classList.toggle("resaltado");
+        }
+      });
+
+      document
+        .getElementById("resaltarSpanBtn")
+        .addEventListener("click", () => {
+          for (let i = 0; i < spans.length; i++) {
+            spans[i].classList.toggle("resaltado");
+          }
+        });
+    </script>
+  </body>
+</html>

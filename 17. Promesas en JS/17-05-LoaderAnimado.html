@@ -1,0 +1,28 @@
+<!-- HTML -->
+<div id="loader">⏳ Cargando...</div>
+<div id="contenido" style="display: none">✅ ¡Contenido cargado!</div>
+
+<script>
+  // Función que espera un tiempo
+  function esperar(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function cargarContenido() {
+    const loader = document.getElementById("loader");
+    const contenido = document.getElementById("contenido");
+
+    // Mostrar loader
+    loader.style.display = "block";
+    contenido.style.display = "none";
+
+    // Esperar 3 segundos simulando carga
+    await esperar(3000);
+
+    // Ocultar loader y mostrar contenido
+    loader.style.display = "none";
+    contenido.style.display = "block";
+  }
+
+  cargarContenido();
+</script>

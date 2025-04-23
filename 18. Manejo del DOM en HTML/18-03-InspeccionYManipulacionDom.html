@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Interacción con el DOM</title>
+    <style>
+      .destacado {
+        background-color: yellow;
+      }
+
+      .oculto {
+        display: none;
+      }
+
+      ul {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="titulo">DOM Interactivo</h1>
+
+    <button id="botonAgregar">Agregar elemento</button>
+    <button id="botonResaltar">Resaltar párrafos</button>
+    <button id="botonOcultar">Ocultar lista</button>
+
+    <p class="parrafo">Este es el primer párrafo.</p>
+    <p class="parrafo">Segundo párrafo del documento.</p>
+    <p class="parrafo">Tercer párrafo para probar.</p>
+
+    <ul id="lista">
+      <li>Elemento 1</li>
+      <li>Elemento 2</li>
+    </ul>
+
+    <script>
+      // Obtener elementos por ID
+      const titulo = document.getElementById("titulo");
+      const botonAgregar = document.getElementById("botonAgregar");
+      const botonResaltar = document.getElementById("botonResaltar");
+      const botonOcultar = document.getElementById("botonOcultar");
+      const lista = document.getElementById("lista");
+
+      // Obtener elementos por clase
+      const parrafos = document.getElementsByClassName("parrafo");
+
+      // Mostrar en consola
+      console.log("Título:", titulo);
+      console.log("Botones:", botonAgregar, botonResaltar, botonOcultar);
+      console.log("Párrafos:", parrafos);
+      console.log("Lista UL:", lista);
+      console.dir(titulo); // Ver todas las propiedades del nodo
+
+      // Evento: agregar un nuevo ítem a la lista
+      botonAgregar.addEventListener("click", () => {
+        const nuevoItem = document.createElement("li");
+        nuevoItem.textContent = `Elemento ${lista.children.length + 1}`;
+        lista.appendChild(nuevoItem);
+        console.log("Nuevo elemento agregado:", nuevoItem);
+      });
+
+      // Evento: resaltar todos los párrafos
+      botonResaltar.addEventListener("click", () => {
+        Array.from(parrafos).forEach((p) => {
+          p.classList.toggle("destacado");
+          console.log("Parrafo modificado:", p.textContent);
+        });
+      });
+
+      // Evento: ocultar o mostrar lista
+      botonOcultar.addEventListener("click", () => {
+        lista.classList.toggle("oculto");
+        console.log("Lista visible:", !lista.classList.contains("oculto"));
+      });
+    </script>
+  </body>
+</html>

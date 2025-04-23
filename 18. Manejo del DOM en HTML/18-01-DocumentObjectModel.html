@@ -1,0 +1,111 @@
+<!-- DOM (Document Object Model)
+
+El **DOM** es una representación estructurada del documento HTML como un árbol de nodos. Cada etiqueta, atributo o texto en el HTML se convierte en un objeto (nodo) que puede ser accedido y manipulado con JavaScript.
+
+JavaScript usa el DOM para:
+- Acceder a elementos HTML.
+- Cambiar su contenido o estilos.
+- Escuchar eventos como clics, teclas, etc.
+- Crear o eliminar elementos dinámicamente.
+
+Ejemplo básico de estructura del DOM: -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <body>
+    <h1 id="titulo">Hola Mundo</h1>
+    <p class="parrafo">Este es un párrafo</p>
+    <button onclick="cambiarTexto()">Cambiar texto</button>
+  </body>
+</html> -->
+
+<!-- 
+Podemos acceder y modificar estos elementos desde JS usando el DOM.
+
+Métodos comunes de acceso:
+- `document.getElementById(id)`
+- `document.querySelector(selectorCSS)`
+- `document.getElementsByClassName(nombreClase)`
+- `document.getElementsByTagName(etiqueta)`
+
+Modificación del contenido:
+- `element.textContent` → cambia el texto.
+- `element.innerHTML` → cambia HTML interno.
+- `element.style` → modifica los estilos CSS directamente.
+
+Creación y eliminación de elementos:
+- `document.createElement('etiqueta')`
+- `element.appendChild(nodo)`
+- `element.removeChild(nodo)`
+
+Eventos del DOM:
+- Se usan para reaccionar a acciones del usuario.
+- `element.addEventListener('click', funcion)`
+- También hay eventos como: `mouseover`, `keydown`, `submit`, etc.
+-->
+
+<!-- Acceder y modificar un elemento -->
+
+<h1 id="titulo">Bienvenido</h1>
+<button onclick="cambiarTitulo()">Cambiar</button>
+
+<script>
+  function cambiarTitulo() {
+    const h1 = document.getElementById("titulo");
+    h1.textContent = "¡Título cambiado con JS!";
+    h1.style.color = "blue";
+  }
+</script>
+
+<!-- Crear y agregar un elemento dinámicamente -->
+<ul id="lista"></ul>
+<button onclick="agregarItem()">Agregar ítem</button>
+
+<script>
+  function agregarItem() {
+    const li = document.createElement("li");
+    li.textContent = "Nuevo elemento agregado";
+    document.getElementById("lista").appendChild(li);
+  }
+</script>
+
+<!-- Escuchar eventos con addEventListener -->
+<button id="btn">Haz clic</button>
+
+<script>
+  document.getElementById("btn").addEventListener("click", function () {
+    alert("¡Botón clickeado!");
+  });
+</script>
+
+<!-- Eliminar un elemento dinámicamente -->
+<div id="contenedor">
+  <p id="paraEliminar">Este es un párrafo.</p>
+</div>
+<button onclick="eliminar()">Eliminar párrafo</button>
+
+<script>
+  function eliminar() {
+    const parrafo = document.getElementById("paraEliminar");
+    parrafo.remove(); // o: parrafo.parentNode.removeChild(parrafo);
+  }
+</script>
+
+<!-- Crear Tarjetas Dinamicas -->
+<div id="tarjetas"></div>
+<button onclick="crearTarjeta()">Agregar Tarjeta</button>
+
+<script>
+  let contador = 1;
+
+  function crearTarjeta() {
+    const tarjeta = document.createElement("div");
+    tarjeta.textContent = `Tarjeta ${contador++}`;
+    tarjeta.style.border = "1px solid gray";
+    tarjeta.style.padding = "10px";
+    tarjeta.style.margin = "5px";
+    tarjeta.style.background = "#f0f0f0";
+
+    document.getElementById("tarjetas").appendChild(tarjeta);
+  }
+</script>
